@@ -101,4 +101,16 @@ app.MapPut("/api/materials/{id}", (LoncotesLibraryDbContext db, int id) =>
     return Results.NoContent();
 });
 
+
+app.MapGet("/api/materialtypes", (LoncotesLibraryDbContext db) =>
+{
+    return Results.Ok(db.MaterialTypes.ToList());
+});
+
+
+
+
+
+
+
 app.Run();
