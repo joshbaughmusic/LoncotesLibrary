@@ -91,4 +91,14 @@ app.MapPost("/api/materials", (LoncotesLibraryDbContext db, Material material) =
     return Results.Created($"/api/materials/{material.Id}", material);
 });
 
+app.MapPut("/api/materials/{id}", (LoncotesLibraryDbContext db, int id) =>
+{
+    Material matchedMaterial = db.Materials.Single(m => m.Id == id);
+
+    matchedMaterial.OutOfCirculationSince = DateTime.Now;
+
+    db.SaveChanges();
+    return Results.NoContent();
+});
+
 app.Run();
