@@ -149,14 +149,14 @@ namespace LoncotesLibrary.Migrations
                 columns: new[] { "Id", "GenreId", "MaterialName", "MaterialTypeId", "OutOfCirculationSince" },
                 values: new object[,]
                 {
-                    { 1, 1, "1984", 1, new DateTime(1989, 2, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 2, "The Lord of the Rings", 1, new DateTime(2005, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1, 1, "1984", 1, null },
+                    { 2, 2, "The Lord of the Rings", 1, null },
                     { 3, 3, "The Matrix", 2, null },
                     { 4, 4, "The Shining", 1, new DateTime(1992, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 5, 5, "Pulp Fiction", 2, null },
                     { 6, 1, "The Catcher in the Rye", 1, new DateTime(2002, 9, 18, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 7, 2, "Blade Runner", 2, null },
-                    { 8, 3, "1984", 3, new DateTime(1995, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, 2, "War Of The Worlds", 3, null },
                     { 9, 4, "Brave New World", 1, null },
                     { 10, 5, "Star Wars: A New Hope", 2, new DateTime(2007, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 11, 1, "Master of Puppets", 3, null },

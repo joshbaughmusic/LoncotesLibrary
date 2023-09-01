@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LoncotesLibrary.Migrations
 {
     [DbContext(typeof(LoncotesLibraryDbContext))]
-    [Migration("20230901190301_InitialCreate")]
+    [Migration("20230901192234_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,16 +131,14 @@ namespace LoncotesLibrary.Migrations
                             Id = 1,
                             GenreId = 1,
                             MaterialName = "1984",
-                            MaterialTypeId = 1,
-                            OutOfCirculationSince = new DateTime(1989, 2, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            MaterialTypeId = 1
                         },
                         new
                         {
                             Id = 2,
                             GenreId = 2,
                             MaterialName = "The Lord of the Rings",
-                            MaterialTypeId = 1,
-                            OutOfCirculationSince = new DateTime(2005, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            MaterialTypeId = 1
                         },
                         new
                         {
@@ -182,10 +180,9 @@ namespace LoncotesLibrary.Migrations
                         new
                         {
                             Id = 8,
-                            GenreId = 3,
-                            MaterialName = "1984",
-                            MaterialTypeId = 3,
-                            OutOfCirculationSince = new DateTime(1995, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            GenreId = 2,
+                            MaterialName = "War Of The Worlds",
+                            MaterialTypeId = 3
                         },
                         new
                         {
@@ -381,21 +378,21 @@ namespace LoncotesLibrary.Migrations
 
             modelBuilder.Entity("LoncotesLibrary.Models.Material", b =>
                 {
-                    b.HasOne("LoncotesLibrary.Models.Genre", "genre")
+                    b.HasOne("LoncotesLibrary.Models.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LoncotesLibrary.Models.MaterialType", "materialType")
+                    b.HasOne("LoncotesLibrary.Models.MaterialType", "MaterialType")
                         .WithMany()
                         .HasForeignKey("MaterialTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("genre");
+                    b.Navigation("Genre");
 
-                    b.Navigation("materialType");
+                    b.Navigation("MaterialType");
                 });
 
             modelBuilder.Entity("LoncotesLibrary.Models.Material", b =>

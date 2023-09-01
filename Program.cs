@@ -33,6 +33,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.MapGet("/api/materials", (LoncotesLibraryDbContext db) =>
+{
+    return db.Materials.Where(m => m.OutOfCirculationSince == null).Include(m => m.MaterialType).Include(g => g.Genre).ToList();
+});
 
 app.Run();

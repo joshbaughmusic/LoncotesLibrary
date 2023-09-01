@@ -19,9 +19,9 @@ public class LoncotesLibraryDbContext : DbContext
     {
         modelBuilder.Entity<Material>().HasData(new Material[]
         {
-            new Material {Id = 1, MaterialName = "1984", MaterialTypeId = 1, GenreId = 1, OutOfCirculationSince = new DateTime(1989,02,22)},
+            new Material {Id = 1, MaterialName = "1984", MaterialTypeId = 1, GenreId = 1, OutOfCirculationSince = null},
             // Instance 2
-            new Material { Id = 2, MaterialName = "The Lord of the Rings", MaterialTypeId = 1, GenreId = 2, OutOfCirculationSince = new DateTime(2005, 07, 15) },
+            new Material { Id = 2, MaterialName = "The Lord of the Rings", MaterialTypeId = 1, GenreId = 2, OutOfCirculationSince = null},
 
             // Instance 3
             new Material { Id = 3, MaterialName = "The Matrix", MaterialTypeId = 2, GenreId = 3, OutOfCirculationSince = null },
@@ -39,7 +39,7 @@ public class LoncotesLibraryDbContext : DbContext
             new Material { Id = 7, MaterialName = "Blade Runner", MaterialTypeId = 2, GenreId = 2, OutOfCirculationSince = null },
 
             // Instance 8
-            new Material { Id = 8, MaterialName = "1984", MaterialTypeId = 3, GenreId = 3, OutOfCirculationSince = new DateTime(1995, 12, 01) },
+            new Material { Id = 8, MaterialName = "War Of The Worlds", MaterialTypeId = 3, GenreId = 2, OutOfCirculationSince = null },
 
             // Instance 9
             new Material { Id = 9, MaterialName = "Brave New World", MaterialTypeId = 1, GenreId = 4, OutOfCirculationSince = null },
