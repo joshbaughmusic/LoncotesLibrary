@@ -112,6 +112,10 @@ app.MapGet("/api/genres", (LoncotesLibraryDbContext db) =>
     return Results.Ok(db.Genres.ToList());
 });
 
+app.MapGet("/api/patrons", (LoncotesLibraryDbContext db) =>
+{
+    return Results.Ok(db.Patrons.ToList());
+});
 
 
 
