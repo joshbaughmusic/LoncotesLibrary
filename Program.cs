@@ -84,4 +84,11 @@ app.MapGet("/api/materials/{id}", (LoncotesLibraryDbContext db, int id) =>
     return db.Materials.Where(m => m.Id == id).Include(m => m.Genre).Include(m => m.MaterialType).Include(m => m.Checkouts).ThenInclude(m => m.Patron).ToList();
 });
 
+app.MapPost("/api/materials", (LoncotesLibraryDbContext db, Material material) =>
+{
+    db.Materials.Add(material);
+    db.SaveChanges();
+    return Results.Created($"/api/materials/{material.Id}", material);
+});
+
 app.Run();
