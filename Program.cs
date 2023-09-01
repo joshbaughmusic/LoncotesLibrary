@@ -33,9 +33,55 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/materials", (LoncotesLibraryDbContext db) =>
+
+app.MapGet("/api/materials", (LoncotesLibraryDbContext db, int? materialTypeId, int? genreId) =>
 {
-    return db.Materials.Where(m => m.OutOfCirculationSince == null).Include(m => m.MaterialType).Include(g => g.Genre).ToList();
+    if (materialTypeId != null && genreId != null)
+    {
+        List<Material> matchedMaterials = db.Materials.Where(m => m.MaterialTypeId == materialTypeId && m.GenreId == genreId).Include(m => m.MaterialType).Include(g => g.Genre).ToList();
+
+        if (matchedMaterials.Count > 0)
+        {
+            return Results.Ok(matchedMaterials);
+        }
+        else 
+        {
+            return Results.NotFound();
+        }
+    }
+    if (materialTypeId != null && genreId == null)
+    {
+        List<Material> matchedMaterials = db.Materials.Where(m => m.MaterialTypeId == materialTypeId).Include(m => m.MaterialType).Include(g => g.Genre).ToList();
+
+        if (matchedMaterials.Count > 0)
+        {
+            return Results.Ok(matchedMaterials);
+        }
+        else 
+        {
+            return Results.NotFound();
+        }
+    }
+    if (materialTypeId == null && genreId != null)
+    {
+        List<Material> matchedMaterials = db.Materials.Where(m => m.GenreId == genreId).Include(m => m.MaterialType).Include(g => g.Genre).ToList();
+
+        if (matchedMaterials.Count > 0)
+        {
+            return Results.Ok(matchedMaterials);
+        }
+        else 
+        {
+            return Results.NotFound();
+        }
+    }
+    return Results.Ok(db.Materials.Where(m => m.OutOfCirculationSince == null).Include(m => m.MaterialType).Include(g => g.Genre).ToList());
+
+});
+
+app.MapGet("/api/materials/{id}", (LoncotesLibraryDbContext db, int id) =>
+{
+    return db.Materials.Where(m => m.Id == id).Include(m => m.Genre).Include(m => m.MaterialType).Include(m => m.Checkouts).ThenInclude(m => m.Patron).ToList();
 });
 
 app.Run();

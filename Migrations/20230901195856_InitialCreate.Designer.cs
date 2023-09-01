@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LoncotesLibrary.Migrations
 {
     [DbContext(typeof(LoncotesLibraryDbContext))]
-    [Migration("20230901192234_InitialCreate")]
+    [Migration("20230901195856_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -365,15 +365,15 @@ namespace LoncotesLibrary.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LoncotesLibrary.Models.Patron", "patron")
+                    b.HasOne("LoncotesLibrary.Models.Patron", "Patron")
                         .WithMany("Checkouts")
                         .HasForeignKey("PatronId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("material");
+                    b.Navigation("Patron");
 
-                    b.Navigation("patron");
+                    b.Navigation("material");
                 });
 
             modelBuilder.Entity("LoncotesLibrary.Models.Material", b =>

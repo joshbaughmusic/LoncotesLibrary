@@ -363,15 +363,15 @@ namespace LoncotesLibrary.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LoncotesLibrary.Models.Patron", "patron")
+                    b.HasOne("LoncotesLibrary.Models.Patron", "Patron")
                         .WithMany("Checkouts")
                         .HasForeignKey("PatronId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("material");
+                    b.Navigation("Patron");
 
-                    b.Navigation("patron");
+                    b.Navigation("material");
                 });
 
             modelBuilder.Entity("LoncotesLibrary.Models.Material", b =>
