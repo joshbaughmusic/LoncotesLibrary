@@ -65,9 +65,9 @@ public class LoncotesLibraryDbContext : DbContext
 
         modelBuilder.Entity<MaterialType>().HasData(new MaterialType []
         {
-            new MaterialType { Id = 1, Name = "Book", CheckoutDays = 14},
+            new MaterialType { Id = 1, Name = "Book", CheckoutDays = 7},
             new MaterialType { Id = 2, Name = "Movie", CheckoutDays = 3},
-            new MaterialType { Id = 3, Name = "CD", CheckoutDays = 7}
+            new MaterialType { Id = 3, Name = "CD", CheckoutDays = 4}
         });
 
         modelBuilder.Entity<Genre>().HasData(new Genre []
@@ -135,6 +135,50 @@ public class LoncotesLibraryDbContext : DbContext
                 Email = "michaeldavis@example.com",
                 IsActive = false
             }
+        });
+
+        modelBuilder.Entity<Checkout>().HasData(new Checkout []
+        {
+            new Checkout
+    {
+        Id = 1,
+        MaterialId = 1,
+        PatronId = 1,
+        CheckoutDate = DateTime.Now,
+        ReturnDate = DateTime.Now.AddDays(7)
+    },
+    new Checkout
+    {
+        Id = 2,
+        MaterialId = 5,
+        PatronId = 2,
+        CheckoutDate = DateTime.Now.AddDays(-3),
+        ReturnDate = DateTime.Now.AddDays(4)
+    },
+    new Checkout
+    {
+        Id = 3,
+        MaterialId = 10,
+        PatronId = 3,
+        CheckoutDate = DateTime.Now.AddDays(-10),
+        ReturnDate = null
+    },
+    new Checkout
+    {
+        Id = 4,
+        MaterialId = 8,
+        PatronId = 4,
+        CheckoutDate = DateTime.Now.AddDays(-7),
+        ReturnDate = null
+    },
+    new Checkout
+    {
+        Id = 5,
+        MaterialId = 15,
+        PatronId = 5,
+        CheckoutDate = DateTime.Now.AddDays(-5),
+        ReturnDate = DateTime.Now.AddDays(3)
+    }
         });
         
     }

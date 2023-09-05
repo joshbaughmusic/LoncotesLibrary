@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LoncotesLibrary.Migrations
 {
     [DbContext(typeof(LoncotesLibraryDbContext))]
-    partial class LoncotesLibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230905175941_update2")]
+    partial class update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,40 +55,42 @@ namespace LoncotesLibrary.Migrations
                         new
                         {
                             Id = 1,
-                            CheckoutDate = new DateTime(2023, 9, 5, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(7997),
+                            CheckoutDate = new DateTime(2023, 9, 5, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6896),
                             MaterialId = 1,
                             PatronId = 1,
-                            ReturnDate = new DateTime(2023, 9, 12, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8024)
+                            ReturnDate = new DateTime(2023, 9, 12, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6921)
                         },
                         new
                         {
                             Id = 2,
-                            CheckoutDate = new DateTime(2023, 9, 2, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8027),
+                            CheckoutDate = new DateTime(2023, 9, 2, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6924),
                             MaterialId = 5,
                             PatronId = 2,
-                            ReturnDate = new DateTime(2023, 9, 9, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8028)
+                            ReturnDate = new DateTime(2023, 9, 9, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6925)
                         },
                         new
                         {
                             Id = 3,
-                            CheckoutDate = new DateTime(2023, 8, 26, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8030),
+                            CheckoutDate = new DateTime(2023, 8, 26, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6927),
                             MaterialId = 10,
-                            PatronId = 3
+                            PatronId = 3,
+                            ReturnDate = new DateTime(2023, 9, 3, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6929)
                         },
                         new
                         {
                             Id = 4,
-                            CheckoutDate = new DateTime(2023, 8, 29, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8032),
+                            CheckoutDate = new DateTime(2023, 8, 29, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6930),
                             MaterialId = 8,
-                            PatronId = 4
+                            PatronId = 4,
+                            ReturnDate = new DateTime(2023, 9, 4, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6932)
                         },
                         new
                         {
                             Id = 5,
-                            CheckoutDate = new DateTime(2023, 8, 31, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8033),
+                            CheckoutDate = new DateTime(2023, 8, 31, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6971),
                             MaterialId = 15,
                             PatronId = 5,
-                            ReturnDate = new DateTime(2023, 9, 8, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8035)
+                            ReturnDate = new DateTime(2023, 9, 8, 12, 59, 41, 652, DateTimeKind.Local).AddTicks(6972)
                         });
                 });
 

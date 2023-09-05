@@ -2,6 +2,7 @@ using LoncotesLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
+using System.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,6 +85,14 @@ app.MapGet("/api/materials/{id}", (LoncotesLibraryDbContext db, int id) =>
     return db.Materials.Where(m => m.Id == id).Include(m => m.Genre).Include(m => m.MaterialType).Include(m => m.Checkouts).ThenInclude(m => m.Patron).ToList();
 });
 
+app.MapGet("/api/materials/available", (LoncotesLibraryDbContext db) =>
+{
+    return db.Materials
+    .Where(m => m.OutOfCirculationSince == null)
+    .Where(m => m.Checkouts.All(co => co.ReturnDate != null))
+    .ToList();
+});
+
 app.MapPost("/api/materials", (LoncotesLibraryDbContext db, Material material) =>
 {
     db.Materials.Add(material);
@@ -117,8 +126,63 @@ app.MapGet("/api/patrons", (LoncotesLibraryDbContext db) =>
     return Results.Ok(db.Patrons.ToList());
 });
 
+app.MapGet("/api/patrons/{id}", (LoncotesLibraryDbContext db, int id) =>
+{
+    return Results.Ok(db.Patrons.Where(p => p.Id == id).Include(p => p.Checkouts).ThenInclude(c => c.material).ThenInclude(m => m.MaterialType));
+
+});
 
 
+app.MapPut("/api/patrons/{id}", (LoncotesLibraryDbContext db, int id, Patron updatedPatron) =>
+{
+    Patron matchedPatron = db.Patrons.Single(p => p.Id == id);
 
+    matchedPatron.Address = updatedPatron.Address;
+    matchedPatron.Email = updatedPatron.Email;
+
+    db.SaveChanges();
+
+    return Results.NoContent();
+});
+
+app.MapPut("/api/patrons/{id}/deactivate", (LoncotesLibraryDbContext db, int id) =>
+{
+    Patron matchedPatron = db.Patrons.Single(p => p.Id == id);
+
+    matchedPatron.IsActive = false;
+
+    db.SaveChanges();
+
+    return Results.NoContent();
+});
+
+app.MapPost("/api/checkouts", (LoncotesLibraryDbContext db, Checkout newCheckout) =>
+{
+    newCheckout.CheckoutDate =  DateTime.Today;
+    newCheckout.material = db.Materials.SingleOrDefault(m => m.Id == newCheckout.MaterialId);
+    newCheckout.Patron = db.Patrons.SingleOrDefault(p => p.Id == newCheckout.PatronId);
+    db.Checkouts.Add(newCheckout);
+    db.SaveChanges();
+    return Results.Created($"/api/checkouts/{newCheckout.Id}", newCheckout);
+});
+
+app.MapPut("/api/checkouts/{id}/return", (LoncotesLibraryDbContext db, int id) =>
+{
+    Checkout foundCheckout = db.Checkouts.SingleOrDefault(c => c.Id == id);
+    foundCheckout.ReturnDate = DateTime.Now;
+    db.SaveChanges();
+    return Results.NoContent();
+});
+
+app.MapGet("/api/checkouts/overdue", (LoncotesLibraryDbContext db) =>
+{
+    return db.Checkouts
+    .Include(co => co.Patron)
+    .Include(co => co.material)
+    .ThenInclude(m => m.MaterialType)
+    .Where(co => (DateTime.Today - co.CheckoutDate).Days > co.material.MaterialType.CheckoutDays && co.ReturnDate == null)
+    .ToList();
+    
+});
 
 app.Run();

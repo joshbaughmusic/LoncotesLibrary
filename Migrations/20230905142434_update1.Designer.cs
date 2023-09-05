@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LoncotesLibrary.Migrations
 {
     [DbContext(typeof(LoncotesLibraryDbContext))]
-    partial class LoncotesLibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230905142434_update1")]
+    partial class update1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,40 +55,42 @@ namespace LoncotesLibrary.Migrations
                         new
                         {
                             Id = 1,
-                            CheckoutDate = new DateTime(2023, 9, 5, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(7997),
+                            CheckoutDate = new DateTime(2023, 9, 5, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1870),
                             MaterialId = 1,
                             PatronId = 1,
-                            ReturnDate = new DateTime(2023, 9, 12, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8024)
+                            ReturnDate = new DateTime(2023, 9, 12, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1898)
                         },
                         new
                         {
                             Id = 2,
-                            CheckoutDate = new DateTime(2023, 9, 2, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8027),
+                            CheckoutDate = new DateTime(2023, 9, 2, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1901),
                             MaterialId = 5,
                             PatronId = 2,
-                            ReturnDate = new DateTime(2023, 9, 9, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8028)
+                            ReturnDate = new DateTime(2023, 9, 9, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1903)
                         },
                         new
                         {
                             Id = 3,
-                            CheckoutDate = new DateTime(2023, 8, 26, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8030),
+                            CheckoutDate = new DateTime(2023, 8, 26, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1905),
                             MaterialId = 10,
-                            PatronId = 3
+                            PatronId = 3,
+                            ReturnDate = new DateTime(2023, 9, 3, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1906)
                         },
                         new
                         {
                             Id = 4,
-                            CheckoutDate = new DateTime(2023, 8, 29, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8032),
+                            CheckoutDate = new DateTime(2023, 8, 29, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1908),
                             MaterialId = 8,
-                            PatronId = 4
+                            PatronId = 4,
+                            ReturnDate = new DateTime(2023, 9, 4, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1910)
                         },
                         new
                         {
                             Id = 5,
-                            CheckoutDate = new DateTime(2023, 8, 31, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8033),
+                            CheckoutDate = new DateTime(2023, 8, 31, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1912),
                             MaterialId = 15,
                             PatronId = 5,
-                            ReturnDate = new DateTime(2023, 9, 8, 13, 8, 52, 354, DateTimeKind.Local).AddTicks(8035)
+                            ReturnDate = new DateTime(2023, 9, 8, 9, 24, 34, 676, DateTimeKind.Local).AddTicks(1913)
                         });
                 });
 
@@ -299,7 +303,7 @@ namespace LoncotesLibrary.Migrations
                         new
                         {
                             Id = 1,
-                            CheckoutDays = 7,
+                            CheckoutDays = 14,
                             Name = "Book"
                         },
                         new
@@ -311,7 +315,7 @@ namespace LoncotesLibrary.Migrations
                         new
                         {
                             Id = 3,
-                            CheckoutDays = 4,
+                            CheckoutDays = 7,
                             Name = "CD"
                         });
                 });
